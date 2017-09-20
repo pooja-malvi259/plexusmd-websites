@@ -17,19 +17,17 @@
  *
  * @package WordPress
  */
-
+// ** Heroku Postgres settings - from Heroku Environment ** //
+$db = parse_url($_ENV["DATABASE_URL"]);
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define('DB_NAME', 'websites');
-
+define('DB_NAME', trim($db["path"],"/"));
 /** MySQL database username */
-define('DB_USER', 'root');
-
+define('DB_USER', $db["user"]);
 /** MySQL database password */
-define('DB_PASSWORD', '');
-
+define('DB_PASSWORD', $db["pass"]);
 /** MySQL hostname */
-define('DB_HOST', 'localhost');
+define('DB_HOST', $db["host"]);
 
 /** Database Charset to use in creating database tables. */
 define('DB_CHARSET', 'utf8mb4');
@@ -46,14 +44,14 @@ define('DB_COLLATE', '');
  *
  * @since 2.6.0
  */
-define('AUTH_KEY',         'iG[dPO?<!v_!WX)tu+{:o~LmH8cAro/^U|NUPlYX#x|Hx;$U)<2TvizDz)dHZtpz');
-define('SECURE_AUTH_KEY',  '0nkS4X8UZ{%~16/2>[:,S8Y]IBo4<uWErY%10U>#$*EeV>QbG&w:Cu.rN^39R<l}');
-define('LOGGED_IN_KEY',    '#=,#tm01+a>6NIj% C-z]_8Q@m96DLQN&Mg.hzr/oesl USF[~H,)?a9)X~GSpc9');
-define('NONCE_KEY',        'l|dt7w}1q+x ); NdQijJ`]}OpWIF39c<%l]y}i%dS>drDv(D `XC&*2~0` 7ht4');
-define('AUTH_SALT',        '%f@Ymo0T3j);#2XK>/D u2Z>9.-U!_LV*blc/y:;3hH_Y}+&Xfo?-,(?HFRbKtlc');
-define('SECURE_AUTH_SALT', ',fpOX<5VHga RtirH;wTN 74]*o([wy6K?`_qwW/``a(U7$c=NvWvEHTAI1WM&B!');
-define('LOGGED_IN_SALT',   'cdvrgpXfL>[[,ug7%Ed1.R[4j*k5Z$Sk1n*PKP9@yl#&l_1U?5.YA)m:WV7$uQ_A');
-define('NONCE_SALT',       'c7aj[<,hO,9U79NpQqM0hTy|c B<oZIA7.!|bwmg#6D;;RUp9SU/#+vUKOKbVjfv');
+define('AUTH_KEY',              getenv('AUTH_KEY'));
+define('SECURE_AUTH_KEY',       getenv('SECURE_AUTH_KEY'));
+define('LOGGED_IN_KEY',         getenv('LOGGED_IN_KEY'));
+define('NONCE_KEY',             getenv('NONCE_KEY'));
+define('AUTH_SALT',             getenv('AUTH_SALT'));
+define('SECURE_AUTH_SALT',      getenv('SECURE_AUTH_SALT'));
+define('LOGGED_IN_SALT',        getenv('LOGGED_IN_SALT'));
+define('NONCE_SALT',            getenv('NONCE_SALT'));
 
 /**#@-*/
 
